@@ -24,9 +24,9 @@ def index():
             else:
                 portofolio.update_record(
                     total = portofolio.total + trade.amount,
-                    average = (portofolio.total + trade.amount) / portofolio.count + 1,
+                    average = (portofolio.total + trade.amount) / (portofolio.trades_count + 1),
                     last_amount = trade.amount,
-                    trades_count = portofolio.count + 1
+                    trades_count = portofolio.trades_count + 1
                 )
             #redirect
             session.flash = 'trade inserted'
