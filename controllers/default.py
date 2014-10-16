@@ -6,8 +6,29 @@ from trade_checker import trade_checker
 def index():
     form = SQLFORM(Trade)
     if form.process().accepted:
-        if trade_checker(form.vars, db(PortofolioRule).select()):
-            Trade(form.vars.id).update_record(compliant=True)
+        trade = Trade(form.vars.id)
+        portofolio = db(Portofolio.agent==trade.created_by).select().first()
+        if trade_checker(form.vars,
+                         portofolio,
+                         db(PortofolioRule).select()):
+            # mark as compliant
+            trade.update_record(compliant=True)
+            # update portofolio
+            if not portofolio:
+                Portofolio.insert(agent=trade.created_by,
+                                  total = trade.amount,
+                                  average = trade.amount,
+                                  last_amount = trade.amount,
+                                  trades_count = 1
+                )
+            else:
+                portofolio.update_record(
+                    total = portofolio.total + trade.amount,
+                    average = (portofolio.total + trade.amount) / portofolio.count + 1,
+                    last_amount = trade.amount,
+                    trades_count = portofolio.count + 1
+                )
+            #redirect
             session.flash = 'trade inserted'
             redirect('good_boy')
         else:
@@ -16,10 +37,12 @@ def index():
     return dict(form=form)
 
 def good_boy():
-    return dict()
+    response.view = 'default/redirect.html'
+    return dict(title='Success!')
 
 def bad_boy():
-    return dict()
+    response.view = 'default/redirect.html'
+    return dict(title='Fail')
 
 def user():
     """

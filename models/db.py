@@ -46,13 +46,17 @@ use_janrain(auth, filename='private/janrain.key')
 Trade = db.define_table('trade',
                         Field('name'),
                         Field('amount', 'double'),
-                        Field('compliant', 'boolean', default=False),
+                        Field('compliant', 'boolean', default=False, readable=False, writable=False),
                         auth.signature
 )
 
 Portofolio = db.define_table('portofolio',
-                             
-                             auth.signature
+                        Field('agent', 'reference auth_user'),
+                        Field('total', 'double'),
+                        Field('average', 'double'),
+                        Field('last_amount', 'double'),
+                        Field('trades_count', 'integer'),
+                        auth.signature
 )
 
 PortofolioRule = db.define_table('portofolio_rule',
