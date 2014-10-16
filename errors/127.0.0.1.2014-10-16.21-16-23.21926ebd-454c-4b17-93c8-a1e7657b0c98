@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> global name 'PortofolioRules' is not defined"
+p3
+sS'layer'
+p4
+S'/home/rif/Downloads/web2py/applications/trade/controllers/default.py'
+p5
+sS'code'
+p6
+S' # -*- coding: utf-8 -*-\n# this file is released under public domain and you can use without limitations\n\nfrom trade_checker import trade_checker\n\ndef index():\n    form = SQLFORM(Trade)\n    if form.process().accepted:\n        trade = Trade(form.vars.id)\n        portofolio = db(Portofolio.agent==trade.created_by).select().first()\n        if trade_checker(form.vars,\n                         portofolio,\n                         db(PortofolioRule).select()):\n            # mark as compliant\n            trade.update_record(compliant=True)\n            # update portofolio\n            if not portofolio:\n                Portofolio.insert(agent=trade.created_by,\n                                  total = trade.amount,\n                                  average = trade.amount,\n                                  last_amount = trade.amount,\n                                  trades_count = 1\n                )\n            else:\n                portofolio.update_record(\n                    total = portofolio.total + trade.amount,\n                    average = (portofolio.total + trade.amount) / (portofolio.trades_count + 1),\n                    last_amount = trade.amount,\n                    trades_count = portofolio.trades_count + 1\n                )\n            #redirect\n            session.flash = \'trade inserted\'\n            redirect(\'good_boy\')\n        else:\n            session.flash = \'trade rejected\'\n            redirect(\'bad_boy\')\n    return dict(form=form)\n\ndef good_boy():\n    response.view = \'default/redirect.html\'\n    return dict(title=\'Success!\')\n\ndef bad_boy():\n    response.view = \'default/redirect.html\'\n    return dict(title=\'Fail\')\n\ndef rules():\n    grid = SQLFORM.grid(PortofolioRules)\n    return locals()\n\ndef user():\n    """\n    exposes:\n    http://..../[app]/default/user/login\n    http://..../[app]/default/user/logout\n    http://..../[app]/default/user/register\n    http://..../[app]/default/user/profile\n    http://..../[app]/default/user/retrieve_password\n    http://..../[app]/default/user/change_password\n    http://..../[app]/default/user/manage_users (requires membership in\n    use @auth.requires_login()\n        @auth.requires_membership(\'group name\')\n        @auth.requires_permission(\'read\',\'table name\',record_id)\n    to decorate functions that need access control\n    """\n    return dict(form=auth())\n\n\n@cache.action()\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request, db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    return service()\n\n\n@auth.requires_login() \ndef api():\n    """\n    this is example of API with access control\n    WEB2PY provides Hypermedia API (Collection+JSON) Experimental\n    """\n    from gluon.contrib.hypermedia import Collection\n    rules = {\n        \'<tablename>\': {\'GET\':{},\'POST\':{},\'PUT\':{},\'DELETE\':{}},\n        }\n    return Collection(db).process(request,response,rules)\n\nresponse._vars=response._caller(rules)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'Traceback (most recent call last):\n  File "/home/rif/Downloads/web2py/gluon/restricted.py", line 224, in restricted\n    exec ccode in environment\n  File "/home/rif/Downloads/web2py/applications/trade/controllers/default.py", line 100, in <module>\n  File "/home/rif/Downloads/web2py/gluon/globals.py", line 392, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/rif/Downloads/web2py/applications/trade/controllers/default.py", line 48, in rules\n    grid = SQLFORM.grid(PortofolioRules)\nNameError: global name \'PortofolioRules\' is not defined\n'
+p11
+s.

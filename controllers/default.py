@@ -44,6 +44,10 @@ def bad_boy():
     response.view = 'default/redirect.html'
     return dict(title='Fail')
 
+def rules():
+    grid = SQLFORM.grid(PortofolioRule)
+    return locals()
+
 def user():
     """
     exposes:
