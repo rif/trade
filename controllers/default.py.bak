@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 # this file is released under public domain and you can use without limitations
 
 from trade_checker import trade_checker
@@ -8,10 +8,9 @@ def index():
     if form.process().accepted:
         trade = Trade(form.vars.id)
         portofolio = db(Portofolio.agent==trade.created_by).select().first()
-        check = trade_checker(form.vars,
+        if trade_checker(form.vars,
                          portofolio,
-                         db(PortofolioRule).select())
-        if check[0]:
+                         db(PortofolioRule).select()):
             # mark as compliant
             trade.update_record(compliant=True)
             # update portofolio
@@ -33,7 +32,7 @@ def index():
             session.flash = 'trade inserted'
             redirect('good_boy')
         else:
-            session.flash = check[1]
+            session.flash = 'trade rejected'
             redirect('bad_boy')
     return dict(form=form)
 
