@@ -1,9 +1,7 @@
 €cgluon.globals
 Session
-q}q(Ulast_orderbyqNU
-last_queryqUdb.trade.id>0qU_formkey[default]q]qU$8028f41b-03f3-4761-b277-765ade1c4365qaU_user_agentq	cgluon.storage
+q}q(U_formkey[trade_order/create]q]q(U$8c3de101-9a5f-4f32-85bd-d3209fd2ec3fqU$463fb532-c593-40dd-8afa-7dea0dbb22beqeUlast_orderbyqNU
+last_queryqUdb.trade.id>0q	U_user_agentq
+cgluon.storage
 Storage
-q
-}q(U	is_mobileq‰U	is_tabletq‰Uosqh
-}qUnameqULinuxqs…RqUbrowserqh
-}q(UversionqU38.0.2125.104qhUChromequ…Rqu…Rqu…Rq.
+q}q(Uosqh}qUnameqULinuxqs…RqU	is_tabletq‰U	is_mobileq‰Ubrowserqh}q(UversionqU38.0.2125.104qhUChromequ…Rqu…RqU_formkey[default]q]q(U$8028f41b-03f3-4761-b277-765ade1c4365qU$303f4653-adf0-4a40-86cb-5f73a119ce25qU$4cfc6a85-c756-44a0-8f7a-1a19307ea9a2qeU!_web2py_grid_referrer_web2py_gridq U/trade/default/rulesq!u…Rq".

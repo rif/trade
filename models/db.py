@@ -82,13 +82,16 @@ use_janrain(auth, filename='private/janrain.key')
 'illiquid_flag',
 'illiquid_pricing_source',
 """
-Order = db.define_table('order',
+Order = db.define_table('trade_order',
                         Field('name'),
                         Field('amount', 'double'),
                         Field('compliant', 'boolean', default=False, readable=False, writable=False),
                         auth.signature
 )
 
+"""
+'portfolio_id','instrument_id','instrument_name','holdings,average_cost'
+"""
 Portofolio = db.define_table('portofolio',
                         Field('agent', 'reference auth_user'),
                         Field('total', 'double'),
@@ -98,6 +101,9 @@ Portofolio = db.define_table('portofolio',
                         auth.signature
 )
 
+"""
+'portfolio_id','rule_id','rule_name','rule_code'
+"""
 PortofolioRule = db.define_table('portofolio_rule',
                         Field('name'),
                         Field('code', 'text'),

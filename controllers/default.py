@@ -1,36 +1,36 @@
 # -*- coding: utf-8 -*-
 # this file is released under public domain and you can use without limitations
 
-from trade_checker import trade_checker
+from order_checker import order_checker
 
 def index():
-    form = SQLFORM(Trade)
+    form = SQLFORM(Order)
     if form.process().accepted:
-        trade = Trade(form.vars.id)
-        portofolio = db(Portofolio.agent==trade.created_by).select().first()
-        check = trade_checker(form.vars,
+        order = Order(form.vars.id)
+        portofolio = db(Portofolio.agent==order.created_by).select().first()
+        check = order_checker(form.vars,
                          portofolio,
                          db(PortofolioRule).select())
         if check[0]:
             # mark as compliant
-            trade.update_record(compliant=True)
+            order.update_record(compliant=True)
             # update portofolio
             if not portofolio:
-                Portofolio.insert(agent=trade.created_by,
-                                  total = trade.amount,
-                                  average = trade.amount,
-                                  last_amount = trade.amount,
-                                  trades_count = 1
+                Portofolio.insert(agent=order.created_by,
+                                  total = order.amount,
+                                  average = order.amount,
+                                  last_amount = order.amount,
+                                  orders_count = 1
                 )
             else:
                 portofolio.update_record(
-                    total = portofolio.total + trade.amount,
-                    average = (portofolio.total + trade.amount) / (portofolio.trades_count + 1),
-                    last_amount = trade.amount,
-                    trades_count = portofolio.trades_count + 1
+                    total = portofolio.total + order.amount,
+                    average = (portofolio.total + order.amount) / (portofolio.orders_count + 1),
+                    last_amount = order.amount,
+                    orders_count = portofolio.orders_count + 1
                 )
             #redirect
-            session.flash = 'trade inserted'
+            session.flash = 'order inserted'
             redirect('good_boy')
         else:
             session.flash = check[1]
