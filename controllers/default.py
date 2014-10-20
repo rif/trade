@@ -31,10 +31,10 @@ def index():
                 )
             #redirect
             session.flash = 'order inserted'
-            redirect('good_boy')
+            redirect(URL('good_boy'))
         else:
             session.flash = check[1]
-            redirect('bad_boy')
+            redirect(URL('bad_boy'))
     return dict(form=form)
 
 def good_boy():

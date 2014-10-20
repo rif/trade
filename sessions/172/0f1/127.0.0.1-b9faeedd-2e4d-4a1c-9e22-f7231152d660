@@ -1,7 +1,8 @@
 €cgluon.globals
 Session
-q}q(U_formkey[trade_order/create]q]q(U$8c3de101-9a5f-4f32-85bd-d3209fd2ec3fqU$463fb532-c593-40dd-8afa-7dea0dbb22beqeUlast_orderbyqNU
-last_queryqUdb.trade.id>0q	U_user_agentq
-cgluon.storage
+q}q(U_formkey[trade_order/create]q]q(U$8c3de101-9a5f-4f32-85bd-d3209fd2ec3fqU$463fb532-c593-40dd-8afa-7dea0dbb22beqU$04261df0-daa3-4e1d-8b34-47ae565db2b3qU$43cf8191-db24-4308-bd96-5c8ed5aae823qU$3bff07eb-448f-41bc-a4f9-432756068e91q	U$5254b104-de87-4268-aee5-63c6d0b1ed4dq
+eU
+last_queryqUdb.portofolio.id>0qU_user_agentqcgluon.storage
 Storage
-q}q(Uosqh}qUnameqULinuxqs…RqU	is_tabletq‰U	is_mobileq‰Ubrowserqh}q(UversionqU38.0.2125.104qhUChromequ…Rqu…RqU_formkey[default]q]q(U$8028f41b-03f3-4761-b277-765ade1c4365qU$303f4653-adf0-4a40-86cb-5f73a119ce25qU$4cfc6a85-c756-44a0-8f7a-1a19307ea9a2qeU!_web2py_grid_referrer_web2py_gridq U/trade/default/rulesq!u…Rq".
+q}q(U	is_mobileq‰U	is_tabletq‰Uosqh}qUnameqULinuxqs…RqUbrowserqh}q(UversionqU38.0.2125.104qhUChromequ…Rqu…RqU
+_auth_nextqU4/trade/appadmin/select/db?query=db.portofolio.id%3E0qUflashq NU_formkey[portofolio/1]q!]q"U$4bc4adc3-c56f-4382-83f4-3da36e8f2e66q#aUlast_orderbyq$NU_formkey[default]q%]q&(U$8028f41b-03f3-4761-b277-765ade1c4365q'U$303f4653-adf0-4a40-86cb-5f73a119ce25q(U$4cfc6a85-c756-44a0-8f7a-1a19307ea9a2q)U$ce5d961f-628e-4fb2-b9f9-3151489f9105q*U$0778253d-3068-460f-87f4-8f1ab027d6adq+eU_formkey[portofolio/2]q,]q-U$9941be50-6103-4294-9884-b63c613f480bq.aU!_web2py_grid_referrer_web2py_gridq/U/trade/default/rulesq0U_formkey[login]q1]q2U$bb9aedc5-1bf9-4154-8190-cf874b867ab6q3au…Rq4.
